@@ -10,6 +10,9 @@ const cartSlice = createSlice({
     addItemToCart(state, action) {
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
+      // no matter if we have an existing item or not, the total quantity
+      // will simply increase by 1. we have one more item in the cart.
+      state.totalQuantity++;
 
       if (!existingItem) {
         state.items.push({
@@ -33,6 +36,10 @@ const cartSlice = createSlice({
       // we dont need to check if its part of the array we know that it will be part
       // but we need to find out how many items are in the array
       const existingItem = state.items.find((item) => item.id === id);
+
+      // no matter if we have that item in the cart once or multiple times,
+      // we definitaly wanna reduce the total quantity by 1
+      state.totalQuantity--;
 
       if (existingItem.quantity === 1) {
         // remove the item from the array
