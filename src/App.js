@@ -12,6 +12,9 @@ import Notification from './components/UI/Notification';
  * all our data transformation logic inside of our reducer which is which we
  * typically wanna have it when working with Redux
  * */
+
+let isInitial = true;
+
 function App() {
   const dispatch = useDispatch();
   const showCart = useSelector((state) => state.ui.cartIsVisible);
@@ -55,6 +58,13 @@ function App() {
         }),
       );
     };
+
+    // when the app loads, isInitial is true so we'll return and not continue
+    // sending request which resets cart to empty on firebase
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
 
     sendCartData().catch((error) => {
       dispatch(
