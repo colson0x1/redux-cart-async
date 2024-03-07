@@ -5,6 +5,7 @@ const cartSlice = createSlice({
   initialState: {
     items: [],
     totalQuantity: 0,
+    changed: false,
   },
   reducers: {
     replaceCart(state, action) {
@@ -17,6 +18,7 @@ const cartSlice = createSlice({
       // no matter if we have an existing item or not, the total quantity
       // will simply increase by 1. we have one more item in the cart.
       state.totalQuantity++;
+      state.changed = true;
 
       if (!existingItem) {
         state.items.push({
@@ -44,6 +46,7 @@ const cartSlice = createSlice({
       // no matter if we have that item in the cart once or multiple times,
       // we definitaly wanna reduce the total quantity by 1
       state.totalQuantity--;
+      state.changed = true;
 
       if (existingItem.quantity === 1) {
         // remove the item from the array
