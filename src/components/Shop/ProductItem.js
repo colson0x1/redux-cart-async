@@ -4,6 +4,12 @@ import { cartActions } from '../../store/cart-slice';
 import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
 
+/*
+NOTE!
+At the moment, we have sideeffect free synchronous code inside Component and 
+that is suboptimal code because we're performing data transformation in the 
+component and not inside of the reducers 
+*/
 const ProductItem = (props) => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
