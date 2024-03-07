@@ -11,12 +11,12 @@ const DUMMY_PRODUCTS = [
   {
     id: 'p2',
     price: 300000,
-    title: 'Toyato Fortuner',
+    title: 'Toyota Fortuner',
     description: 'When networth is more than 1 million dollars',
   },
   {
     id: 'p3',
-    price: 6000,
+    price: 7000,
     title: 'MacBook Pro Powerhouse',
     description: 'When networth is 100,000',
   },
@@ -30,6 +30,7 @@ const Products = (props) => {
         {DUMMY_PRODUCTS.map((product) => (
           <ProductItem
             key={product.id}
+            id={product.id}
             title={product.title}
             price={product.price}
             description={product.des}
